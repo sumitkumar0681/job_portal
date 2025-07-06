@@ -1,34 +1,64 @@
 package com.example.job_Portal.Controller;
 
-//import Entity.User;
 import com.example.job_Portal.Entity.User;
 import com.example.job_Portal.Service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "*")
 public class AuthController {
 
     @Autowired
     private AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody User user){
-        System.out.println(user.getName());
-        try {
+    public ResponseEntity<?> register(@RequestBody User user){
+
+            if(!user.getPassword().equals(user.getConfirmPassword())){
+                return ResponseEntity.badRequest().body("Password not matched!");
+            }
+
+            if(authService.existsByEmail(user.getEmail())){
+                return ResponseEntity.badRequest().body("Email already in use.");
+            }
             authService.save(user);
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+            return ResponseEntity.ok().body("User registered successfully.");
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody User user){
 
+        if(!authService.existsByEmail(user.getEmail())){
+            return "User not founnnd!";
+        }
+
+        String pass = authService.pass(user.getEmail());
+        if(!pass.equals(user.getPassword())){
+            return "Wrong password!";
+        }
+
+        String role = authService.role(user.getEmail());
+        if(!role.equals(user.getRole())){
+            return "Wrong user role!";
+        }
+        if(role.equals("admin")){
+            return "adminDashBoard";
+        }
+        else if(role.equals("student")){
+            return "studentDashboard";
+        }
+        else if(role.equals("recruiter")){
+            return "recruiterDashboard";
+        }
+        else{
+            return "login";
+        }
+    }
 
 }

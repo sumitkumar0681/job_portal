@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Portal - Sign Up</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Create an Account</h2>
+    <form id="signupForm" onsubmit="return validateForm()">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password</label>
+      <div class="password-field">
+        <input type="password" id="password" name="password" required />
+        <span class="toggle-password" onclick="togglePassword('password', this)">🙈</span>
+      </div>
+
+      <label for="confirmPassword">Confirm Password</label>
+      <div class="password-field">
+        <input type="password" id="confirmPassword" name="confirmPassword" required />
+        <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">🙈</span>
+      </div>
+
+
+      <label for="role">Select Role</label>
+      <select id="role" name="role" required>
+        <option value="">-- Select Role --</option>
+        <option value="admin">Admin</option>
+        <option value="student">Student</option>
+        <option value="recruiter">Recruiter</option>
+      </select>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p class="signin-link">
+      Already registered? <a href="login.html">Sign In</a>
+    </p>
+    <p id="responseMessage"></p>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>

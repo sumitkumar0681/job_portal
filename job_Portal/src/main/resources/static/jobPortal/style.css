@@ -1,0 +1,75 @@
+/* --- Base layout --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  /* Full-page background image */
+  background: url("https://imgs.search.brave.com/u8BBhmUvgLRtf13JPvMvumjcV1M9Epnt5BTYF9srAJE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTIw/MDc1ODMzMy9waG90/by9sb29raW5nLTNk/LXJlbmRlci5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9eGx6/RThGSVdOVUd0NVJ2/WElWeUx4bkhzWXlM/UFJRNEZMcVlUcWxY/aWxtMD0")
+    center/cover no-repeat fixed;
+
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Optional dark overlay for better contrast */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+/* --- Center container --- */
+.content {
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  position: relative;
+}
+
+/* --- Typography --- */
+h2{
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h3{
+    font-size:x-large;
+    margin-bottom: 10px;
+}
+h4{
+    margin-bottom: 10px;
+}
+
+
+/* --- Buttons --- */
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+button {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
