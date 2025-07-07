@@ -24,7 +24,7 @@ public class AuthController {
                 return ResponseEntity.badRequest().body("Password not matched!");
             }
 
-            if(authService.existsByEmail(user.getEmail())){
+            if(authService.existsByEmail(String.valueOf(user.getEmail()))){
                 return ResponseEntity.badRequest().body("Email already in use.");
             }
             authService.save(user);
@@ -35,8 +35,9 @@ public class AuthController {
     public String login(@RequestBody User user){
 
         if(!authService.existsByEmail(user.getEmail())){
-            return "User not founnnd!";
+            return "User not found!";
         }
+
 
         String pass = authService.pass(user.getEmail());
         if(!pass.equals(user.getPassword())){

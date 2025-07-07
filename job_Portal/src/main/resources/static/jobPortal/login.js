@@ -39,14 +39,19 @@ function validateLogin() {
       return response.text();
     })
     .then(page => {
-      if (page === "adminDashBoard") {
-        window.location.href = "adminDashboard.html";
-      } else if (page === "studentDashboard") {
-        window.location.href = "studentDashboard.html";
-      } else if (page === "recruiterDashboard") {
-        window.location.href = "recruiterDashboard.html";
+      if (page === "adminDashBoard" || page === "studentDashboard" || page === "recruiterDashboard") {
+        // ✅ Save email and role in localStorage
+        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userRole", role);
+
+        // Optional: if you want recruiterEmail specifically used in view-posts.js
+        if (page === "recruiterDashboard") {
+          localStorage.setItem("recruiterEmail", email);
+        }
+
+        window.location.href = `${page}.html`;
       } else {
-        alert(page);
+        alert(page); // show error message from backend
       }
     })
     .catch(error => {
@@ -55,4 +60,3 @@ function validateLogin() {
 
   return false;
 }
-
