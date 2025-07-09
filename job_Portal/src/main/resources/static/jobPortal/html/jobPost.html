@@ -3,27 +3,21 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Update Job Post</title>
-    <link rel="stylesheet" href="updatePost.css" />
-    <script defer src="updatePost.js"></script>
+    <title>Post Job / Internship</title>
+    <link rel="stylesheet" href="../css/jobPost.css" />
 </head>
 <body>
 <div class="container">
-    <h1>Update Post</h1>
-    <form id="updateForm">
-        <input type="hidden" id="jobId" />
-
+    <h1>Post a Job or Internship</h1>
+    <form id="jobForm">
         <label for="orgName">Organization Name</label>
-        <input type="text" id="orgName" required />
+            <input type="text" id="orgName" name="orgName" required />
 
         <label for="email">Recruiter Email</label>
         <input type="email" id="email" name="email" required />
 
         <label for="jobTitle">Job Title</label>
-        <input type="text" id="jobTitle" required />
-
-        <label for="location">Location</label>
-        <input type="text" id="location" required />
+        <input type="text" id="jobTitle" name="jobTitle" required />
 
         <label for="jobType">Job Type</label>
         <select id="jobType" name="jobType" required>
@@ -34,15 +28,19 @@
             <option value="Contract">Contract</option>
         </select>
 
-        <label for="jobDescription">Description</label>
-        <textarea id="jobDescription" rows="5" required></textarea>
+        <label for="jobDescription">Job Description</label>
+        <textarea id="jobDescription" name="jobDescription" rows="5" required></textarea>
+
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" required />
 
         <label for="postDate">Post Date</label>
         <input type="date" id="postDate" name="postDate" required />
 
-        <button type="submit">Save Changes</button>
+        <button type="submit">Submit</button>
     </form>
-    <p id="message"></p>
 </div>
+
+<script src="../js/jobPost.js"></script>
 </body>
 </html>

@@ -3,15 +3,13 @@ document.getElementById("jobForm").addEventListener("submit", function (e) {
 
   const formData = {
     orgName: document.getElementById("orgName").value,
-    email: document.getElementById("email").value,  // ✅ added email
+    email: document.getElementById("email").value,
     jobTitle: document.getElementById("jobTitle").value,
     jobType: document.getElementById("jobType").value,
     jobDescription: document.getElementById("jobDescription").value,
     location: document.getElementById("location").value,
     postDate: document.getElementById("postDate").value,
   };
-
-  console.log("Job Posted:", formData);
 
   fetch("http://localhost:8080/recruiter/addJob", {
     method: "POST",
@@ -26,6 +24,7 @@ document.getElementById("jobForm").addEventListener("submit", function (e) {
     })
     .then(data => {
       alert("Job Posted Successfully!");
+      localStorage.setItem("orgName", orgName);
       document.getElementById("jobForm").reset();
     })
     .catch(error => {

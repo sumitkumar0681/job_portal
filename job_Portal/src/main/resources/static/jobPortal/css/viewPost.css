@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: auto;
   background-color: #fff;
   padding: 2rem;
@@ -69,16 +69,28 @@ h1 {
   color: #999;
 }
 
-button.update-btn,
-button.delete-btn {
-  padding: 6px 12px;
+button.update-btn{
+  padding: 10px 20px;
   font-size: 0.85rem;
   font-weight: bold;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: white;
+  margin-top:10px;
+}
+
+button.delete-btn {
+  padding: 10px 22px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+  margin-top:10px;
 }
 
 .update-btn {

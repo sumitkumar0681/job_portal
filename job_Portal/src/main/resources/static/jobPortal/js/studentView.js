@@ -58,9 +58,19 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Description:</strong> ${job.jobDescription}</p>
           <small><strong>Posted:</strong> ${new Date(job.postDate).toLocaleDateString()}</small>
         </div>
-        <button class="apply-btn">Apply</button>
+        <button class="apply-btn" data-job-id="${job.id}">Apply</button>
       `;
       jobsContainer.appendChild(card);
+    });
+
+    // Attach click events to Apply buttons
+    const applyButtons = document.querySelectorAll(".apply-btn");
+    applyButtons.forEach(btn => {
+      btn.addEventListener("click", function () {
+        const jobId = this.getAttribute("data-job-id");
+        // Redirect to the application page with job ID
+        window.location.href = `studentApply.html?id=${jobId}`;
+      });
     });
   }
 });

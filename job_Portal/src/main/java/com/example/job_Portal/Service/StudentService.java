@@ -17,6 +17,10 @@ public class StudentService {
         return jobPostRepo.findAll();
     }
 
+    public Optional<JobPost> viewById(Long  id){
+        return jobPostRepo.findById(id);
+    }
+
     public List<JobPost> searchPost(String keyword){
         return jobPostRepo.searchPost(keyword);
     }

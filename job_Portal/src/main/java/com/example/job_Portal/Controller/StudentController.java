@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -20,6 +21,15 @@ public class StudentController {
     @GetMapping("/view")
     public ResponseEntity<List<JobPost>> view(){
         List<JobPost> job =  studentService.view();
+        if(job!=null && !job.isEmpty()){
+            return new ResponseEntity<>(job, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/view/id")
+    public ResponseEntity<Optional<JobPost>> viewById(@RequestParam Long id){
+        Optional<JobPost> job = studentService.viewById(id);
         if(job!=null && !job.isEmpty()){
             return new ResponseEntity<>(job, HttpStatus.OK);
         }
