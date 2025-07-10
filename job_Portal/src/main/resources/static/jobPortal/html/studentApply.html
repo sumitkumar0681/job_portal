@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apply for Job</title>
+    <link rel="stylesheet" href="../css/studentApply.css" />
+    <script defer src="../js/StudentApply.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Apply for Job</h1>
+
+    <!-- Read-only Job Info -->
+    <div class="job-details" id="job-details">
+        <p><strong>Organization:</strong> <span id="orgName">Loading...</span></p>
+        <p><strong>Position:</strong> <span id="jobTitle">Loading...</span></p>
+        <p><strong>Location:</strong> <span id="location">Loading...</span></p>
+    </div>
+
+    <!-- Application Form -->
+    <form id="applyForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea>
+
+        <label for="qualification">Highest Qualification:</label>
+        <select id="qualification" name="qualification" required>
+            <option value="" disabled selected>Select</option>
+            <option value="B.Tech">B.Tech</option>
+            <option value="M.Tech">M.Tech</option>
+            <option value="B.Sc">B.Sc</option>
+            <option value="M.Sc">M.Sc</option>
+            <option value="BCA">BCA</option>
+            <option value="MCA">MCA</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <!-- Marks Type Dropdown -->
+        <label for="marksType">Marks Type:</label>
+        <select id="marksType" name="marksType" required>
+            <option value="percentage" selected>Percentage</option>
+            <option value="cgpa">CGPA (out of 10)</option>
+        </select>
+
+        <!-- Qualification Marks -->
+        <label for="qualMarks" id="qualMarksLabel">Qualification Marks (%):</label>
+        <input type="number" id="qualMarks" name="qualMarks" step="0.01" placeholder="e.g. 85.5" required />
+
+        <label for="class12">Class 12 Percentage:</label>
+        <input type="number" id="class12" name="class12" step="0.01" required />
+
+        <label for="class10">Class 10 Percentage:</label>
+        <input type="number" id="class10" name="class10" step="0.01" required />
+
+        <label for="applyDate">Apply Date:</label>
+        <input type="date" id="applyDate" name="applyDate" readonly />
+
+        <label for="resumeLink">Resume Link (Google Drive/Dropbox):</label>
+        <input type="url" id="resumeLink" name="resumeLink" required />
+
+        <button type="submit">Submit Application</button>
+    </form>
+</div>
+</body>
+</html>

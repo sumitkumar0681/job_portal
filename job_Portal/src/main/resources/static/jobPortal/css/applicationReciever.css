@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #1d3557;
+  margin-bottom: 30px;
+}
+
+.application-card {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.application-card h3 {
+  margin: 0 0 10px;
+  color: #457b9d;
+}
+
+.application-card p {
+  margin: 4px 0;
+  line-height: 1.4;
+  color: #333;
+}
+
+.application-card hr {
+  margin: 15px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
