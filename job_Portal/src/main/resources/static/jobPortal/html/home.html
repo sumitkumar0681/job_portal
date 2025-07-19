@@ -7,17 +7,24 @@
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-  <div class="content">
-    <h2>Empowering careers, connecting futures</h2>
-    <h3>Your career begins with the right opportunity</h3>
-    <h4>Create your account or sign-in to find your dream job.</h4>
+<!-- Header with buttons -->
+<header class="top-header">
+  <div class="left-section"></div> <!-- Optional logo or spacer -->
 
-    <div class="buttons">
-      <button onclick="handleLogin()">Login</button>
-      <button onclick="handleRegister()">Register</button>
-    </div>
+  <div class="header-title">Feed</div> <!-- Centered title -->
+
+  <div class="nav-buttons">
+    <button onclick="handleLogin()">Login</button>
+    <button onclick="handleRegister()">Register</button>
+    <button onclick="handleAbout()">About Us</button>
   </div>
+</header>
 
-  <script src="../js/script.js"></script>
+<!-- Main content starts below the fixed header -->
+<main class="job-cards-container" id="jobCardsContainer">
+  <!-- Job post cards will be inserted here -->
+</main>
+
+<script src="../js/script.js"></script>
 </body>
 </html>

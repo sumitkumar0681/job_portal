@@ -25,8 +25,8 @@ body {
   padding: 2rem 2.5rem;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  width: 500px; /* Fixed standard width */
-  max-width: 90vw;
+  width: 600px; /* Fixed standard width */
+  max-width: 99vw;
   max-height: 90vh;
   overflow-y: auto; /* Enables scrolling *inside* the form if needed */
 }

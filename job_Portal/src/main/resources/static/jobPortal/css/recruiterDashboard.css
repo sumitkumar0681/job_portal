@@ -20,22 +20,28 @@ body, html {
 /* Menu Button */
 .menu-toggle {
   position: fixed;
-  top: 10px;
+  top: 15px;
   left: 20px;
   font-size: 24px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255);
   border: none;
   padding: 8px 14px;
   border-radius: 12px;
   cursor: pointer;
   z-index: 1100;
+  border-radius: 15px;
+   background: lightblue;
+}
+
+.menu-toggle:hover{
+    background-color:  #457b9d;
 }
 
 /* Sidebar */
 .sidebar {
   width: 250px;
   height: 100%;
-  background-color: rgba(29, 53, 87, 0.95);
+  background-color: #1e2a3a;;
   color: #fff;
   padding-top: 80px;
   position: fixed;

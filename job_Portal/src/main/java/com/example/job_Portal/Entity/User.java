@@ -24,6 +24,8 @@ public class User {
     private String password;
     private String role;
 
+    private Boolean block;
+
     @Transient
     private String confirmPassword;
 
@@ -73,5 +75,13 @@ public class User {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public Boolean getBlock() {
+        return block;
+    }
+
+    public void setBlock(Boolean block) {
+        this.block = block;
     }
 }

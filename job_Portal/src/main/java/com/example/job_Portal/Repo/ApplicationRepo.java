@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ApplicationRepo extends JpaRepository<Application, Long> {
-    List<Application> findByrecEmail( String recEmail);
+    List<Application> findByEmail( String email);
+    List<Application> findByRecEmail(String recEmail);
 }

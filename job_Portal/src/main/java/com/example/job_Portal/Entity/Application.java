@@ -1,6 +1,8 @@
 package com.example.job_Portal.Entity;
 
 
+
+import com.example.job_Portal.Entity.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -19,10 +21,15 @@ public class Application{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long applicationid;
 
+    private String orgName;
+    private String location;
     private String recEmail;
+    private String appliedFor;
     private String name;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
+
     private String email;
     private String address;
     private String qualification;
@@ -30,9 +37,14 @@ public class Application{
     private Double markQuali;
     private Double per12;
     private Double per10;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate applyDate;
+
     private String resumeLink;
+
+//    @OneToOne(mappedBy = "application", cascade = CascadeType.ALL)
+//    private Status status;
 
     public Long getApplicationid() {
         return applicationid;
@@ -42,12 +54,36 @@ public class Application{
         this.applicationid = applicationid;
     }
 
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getRecEmail() {
         return recEmail;
     }
 
     public void setRecEmail(String recEmail) {
         this.recEmail = recEmail;
+    }
+
+    public String getAppliedFor() {
+        return appliedFor;
+    }
+
+    public void setAppliedFor(String appliedFor) {
+        this.appliedFor = appliedFor;
     }
 
     public String getName() {
@@ -137,4 +173,12 @@ public class Application{
     public void setResumeLink(String resumeLink) {
         this.resumeLink = resumeLink;
     }
+
+//    public Status getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(Status status) {
+//        this.status = status;
+//    }
 }

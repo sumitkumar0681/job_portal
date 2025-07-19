@@ -20,6 +20,8 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user){
 
+           user.setBlock(Boolean.FALSE);
+
             if(!user.getPassword().equals(user.getConfirmPassword())){
                 return ResponseEntity.badRequest().body("Password not matched!");
             }
@@ -38,13 +40,15 @@ public class AuthController {
             return "User not found!";
         }
 
-
         String pass = authService.pass(user.getEmail());
         if(!pass.equals(user.getPassword())){
             return "Wrong password!";
         }
 
         String role = authService.role(user.getEmail());
+        if(authService.block(user.getEmail()).equals(Boolean.TRUE)){
+            return "User Blocked!";
+        }
         if(!role.equals(user.getRole())){
             return "Wrong user role!";
         }

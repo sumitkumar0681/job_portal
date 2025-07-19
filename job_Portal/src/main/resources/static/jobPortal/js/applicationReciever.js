@@ -9,12 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Fetch applications for the recruiter
-  fetch(`http://localhost:8080/application/view/${encodeURIComponent(recruiterEmail)}`)
+  fetch(`http://localhost:8080/application/RecView/${encodeURIComponent(recruiterEmail)}`)
     .then(res => {
       if (!res.ok) throw new Error("Failed to fetch applications");
       return res.json();
     })
     .then(applications => {
+        console.log(applications);
       // Handle empty result
       if (!applications || !applications.length) {
         applicationsContainer.innerHTML = "<p>No applications found.</p>";
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.className = "application-card";
         card.innerHTML = `
-          <h3>${app.name} applied for <strong>${app.appliedFor}</strong></h3>
+          <h3><u>${app.name} applied for <strong>${app.appliedFor}</strong></u></h3>
           <p><strong>Email:</strong> ${app.email}</p>
           <p><strong>Date of Birth:</strong> ${app.dob}</p>
           <p><strong>Address:</strong> ${app.address}</p>
@@ -46,6 +47,3 @@ document.addEventListener("DOMContentLoaded", () => {
       applicationsContainer.innerHTML = `<p>Error loading applications: ${err.message}</p>`;
     });
 });
-
-
-//<p><strong>Organization:</strong> ${app.orgName}</p>

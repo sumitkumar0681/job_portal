@@ -39,4 +39,10 @@ public class AuthService {
         User user = userRepo.findByEmail(email);
         return user.getRole();
     }
+
+    public Boolean block(String email){
+        User user = userRepo.findByEmail(email);
+        boolean isBlocked = user.getBlock();
+        return isBlocked;
+    }
 }

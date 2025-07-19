@@ -50,6 +50,10 @@ function validateLogin() {
           localStorage.setItem("recruiterEmail", email);
         }
 
+        if (page === "studentDashboard") {
+           localStorage.setItem("studentEmail", email);
+        }
+
         window.location.href = `${page}.html`;
       } else {
         alert(page); // show error message from backend

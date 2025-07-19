@@ -5,7 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const locationEl = document.getElementById("location");
   const applyDateEl = document.getElementById("applyDate");
 
-  let recEmail = ""; // ✅ declare globally to store jobTitle
+  let recEmail = "";
+  // Validate jobId
+  if (!jobId) {
+    alert("No job ID found in the URL!");
+    return;
+  }
 
   // Fetch job post details from backend
   fetch(`http://localhost:8080/student/view/id?id=${jobId}`)
@@ -14,23 +19,24 @@ document.addEventListener("DOMContentLoaded", () => {
       return res.json();
     })
     .then((data) => {
+      console.log("Received job data:", data);
       orgNameEl.textContent = data.orgName;
       jobTitleEl.textContent = data.jobTitle;
       locationEl.textContent = data.location;
       recEmail = data.email;
     })
     .catch((err) => {
-      console.error(err);
+      console.error("Fetch job error:", err);
       orgNameEl.textContent = "Error loading";
       jobTitleEl.textContent = "Error loading";
       locationEl.textContent = "Error loading";
     });
 
-  // Set apply date from system
+  // Set apply date to today
   const today = new Date().toISOString().split("T")[0];
   applyDateEl.value = today;
 
-  // Handle qualification marks type toggle (percentage/cgpa)
+  // Handle marks type switch
   document.getElementById("marksType").addEventListener("change", function () {
     const type = this.value;
     const label = document.getElementById("qualMarksLabel");
@@ -53,7 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formData = {
       jobId: jobId,
-      recEmail: recEmail, // ✅ added field
+      orgName: orgNameEl.textContent,
+      location: locationEl.textContent,
+      recEmail: recEmail,
+      appliedFor: jobTitleEl.textContent,
       name: document.getElementById("name").value,
       dob: document.getElementById("dob").value,
       email: document.getElementById("email").value,
@@ -67,8 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
       resumeLink: document.getElementById("resumeLink").value,
     };
 
-    console.log("Submitting application:", formData); // optional debug
+    console.log("Submitting application:", formData);
 
+    // Submit the application
     fetch("http://localhost:8080/application/apply", {
       method: "POST",
       headers: {
@@ -82,8 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("applyForm").reset();
       })
       .catch((err) => {
-        console.error(err);
-        alert("There was an error while submitting your application.");
+        console.error("Submission error:", err);
+        alert("There was an error during submission.");
       });
   });
 });

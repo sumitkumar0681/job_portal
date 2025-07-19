@@ -2,22 +2,48 @@ package com.example.job_Portal.Service;
 
 import com.example.job_Portal.Entity.Application;
 import com.example.job_Portal.Repo.ApplicationRepo;
-import jakarta.validation.constraints.Email;
+import com.example.job_Portal.Repo.StatusRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.job_Portal.Entity.Status;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApplicationService {
     @Autowired
     private ApplicationRepo applicationRepo;
 
+    @Autowired
+    private StatusRepo statusRepo;
+
     public void apply(Application application){
         applicationRepo.save(application);
     }
 
-    public List<Application> findByEmail(String recEmail){
-        return applicationRepo.findByrecEmail(recEmail);
+    public List<Application> findByEmail(String email){
+        return applicationRepo.findByEmail(email);
+    }
+
+    public void save(Application app){
+        applicationRepo.save(app);
+    }
+
+    public Optional<Application> findById(Long id){
+        return applicationRepo.findById(id);
+    }
+
+    public void saveStatus(Status status){
+        statusRepo.save(status);
+    }
+
+    public List<Application> findByRecEmail(String recEmail){
+        return applicationRepo.findByRecEmail(recEmail);
+    }
+
+    public List<Status> getStat(Long id){
+        return statusRepo.findAllById(Collections.singleton(id));
     }
 }

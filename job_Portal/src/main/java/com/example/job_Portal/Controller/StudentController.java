@@ -30,6 +30,7 @@ public class StudentController {
     @GetMapping("/view/id")
     public ResponseEntity<Optional<JobPost>> viewById(@RequestParam Long id){
         Optional<JobPost> job = studentService.viewById(id);
+
         if(job!=null && !job.isEmpty()){
             return new ResponseEntity<>(job, HttpStatus.OK);
         }

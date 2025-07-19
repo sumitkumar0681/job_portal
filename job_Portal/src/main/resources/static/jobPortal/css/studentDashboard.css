@@ -32,7 +32,7 @@ body, html {
   background-repeat: no-repeat;
   background-position: center top;
   min-height: 100vh;
-  padding-top: 42vh; /* Pushes content below fixed header */
+  /*padding-top: 1vh;  */  /* Pushes content below fixed header */
 }
 
 /* Dashboard container layout */
@@ -45,22 +45,26 @@ body, html {
 /* Menu Button */
 .menu-toggle {
   position: fixed;
-  top: 14px;
+  top: 15px;
   left: 20px;
   font-size: 24px;
-  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  background: lightblue;
   border: none;
   padding: 8px 14px;
-  border-radius: 12px;
   cursor: pointer;
   z-index: 1100;
+}
+
+.menu-toggle:hover{
+    background-color:  #457b9d;
 }
 
 /* Sidebar styling */
 .sidebar {
   width: 250px;
   height: 100%;
-  background-color: rgba(29, 53, 87, 0.95);
+ background-color: #1e2a3a;;
   color: #fff;
   padding-top: 80px;
   position: fixed;
