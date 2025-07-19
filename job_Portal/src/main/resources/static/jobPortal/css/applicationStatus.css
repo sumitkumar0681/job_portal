@@ -1,0 +1,84 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f9ff;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.application-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically center job details and status */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.job-details {
+  flex: 1;
+}
+
+.job-details h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #34495e;
+}
+
+.job-details p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 10px 16px;
+  border-radius: 20px;
+  min-width: 100px;
+  max-height: 40px;
+  margin-left: 20px; /* space from job details */
+  text-transform: capitalize;
+}
+
+/* Color variants */
+.status.pending {
+  background-color: #ffeaa7;
+  color: #d35400;
+}
+
+.status.selected {
+  background-color: #dff9fb;
+  color: #27ae60;
+}
+
+.status.rejected {
+  background-color: #f8d7da;
+  color: #c0392b;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  z-index: 10;
+}
