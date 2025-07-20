@@ -12,11 +12,6 @@ public class Status {
     private Long id;
     private String stat;
 
-    @OneToOne
-    @MapsId
-//    @JoinColumn(name = "id") // maps to applicationid
-//    private Application application;
-
     public Long getId() {
         return id;
     }
@@ -24,14 +19,6 @@ public class Status {
     public void setId(Long id) {
         this.id = id;
     }
-
-//    public Application getApplication() {
-//        return application;
-//    }
-//
-//    public void setApplication(Application application) {
-//        this.application = application;
-//    }
 
     public String getStat() {
         return stat;
