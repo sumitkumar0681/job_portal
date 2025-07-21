@@ -2,6 +2,7 @@ package com.example.job_Portal.Controller;
 
 import com.example.job_Portal.Entity.JobPost;
 import com.example.job_Portal.Service.RecruiterService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class RecruiterController {
     private RecruiterService recruiterService;
 
     @PostMapping("/addJob")
-    public ResponseEntity<?> addjob(@RequestBody JobPost jobPost){
+    public ResponseEntity<?> addjob(@RequestBody @Valid JobPost jobPost){
         try{
             recruiterService.saveJob(jobPost);
             return ResponseEntity.ok().body("Job Posted Successfully!");
@@ -31,9 +32,9 @@ public class RecruiterController {
     }
 
     @GetMapping("/view")
-    public ResponseEntity<List<JobPost>> view(String email){
+    public ResponseEntity<List<JobPost>> view(@RequestParam @Valid String email){
        List<JobPost> job = recruiterService.view(email);
-       if(job!=null && !job.isEmpty()) {
+       if(!job.isEmpty()) {
            return new ResponseEntity<>(job, HttpStatus.OK);
        }
        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -42,7 +43,7 @@ public class RecruiterController {
     @GetMapping("/view/id")
     public ResponseEntity<Optional<JobPost>> getbyId(@RequestParam Long id){
         Optional<JobPost> job = recruiterService.findById(id);
-        if(job != null && !job.isEmpty()){
+        if(job.isPresent()){
             return new ResponseEntity<>(job, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -52,13 +53,13 @@ public class RecruiterController {
     public ResponseEntity<?> deletePost(@RequestParam Long id){
         boolean removed = recruiterService.deletePost(id);
         if(removed){
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok("Job deleted successfully");
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updatePost(@RequestBody JobPost jobPost){
+    public ResponseEntity<?> updatePost(@RequestBody @Valid JobPost jobPost){
         try{
             recruiterService.saveJob(jobPost);
             return new ResponseEntity<>(jobPost, HttpStatus.OK);

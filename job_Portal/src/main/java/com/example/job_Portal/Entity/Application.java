@@ -1,16 +1,12 @@
 package com.example.job_Portal.Entity;
 
-
-
-import com.example.job_Portal.Entity.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="application")
@@ -23,13 +19,14 @@ public class Application{
 
     private String orgName;
     private String location;
+    @Email
     private String recEmail;
     private String appliedFor;
     private String name;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
-
+    @Email
     private String email;
     private String address;
     private String qualification;
@@ -43,8 +40,6 @@ public class Application{
 
     private String resumeLink;
 
-//    @OneToOne(mappedBy = "application", cascade = CascadeType.ALL)
-//    private Status status;
 
     public Long getApplicationid() {
         return applicationid;
@@ -174,11 +169,4 @@ public class Application{
         this.resumeLink = resumeLink;
     }
 
-//    public Status getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(Status status) {
-//        this.status = status;
-//    }
 }

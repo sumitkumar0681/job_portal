@@ -21,7 +21,7 @@ public class StudentController {
     @GetMapping("/view")
     public ResponseEntity<List<JobPost>> view(){
         List<JobPost> job =  studentService.view();
-        if(job!=null && !job.isEmpty()){
+        if(!job.isEmpty()){
             return new ResponseEntity<>(job, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -31,7 +31,7 @@ public class StudentController {
     public ResponseEntity<Optional<JobPost>> viewById(@RequestParam Long id){
         Optional<JobPost> job = studentService.viewById(id);
 
-        if(job!=null && !job.isEmpty()){
+        if(job.isPresent()){
             return new ResponseEntity<>(job, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -39,7 +39,11 @@ public class StudentController {
 
     @GetMapping("/view/search")
     public ResponseEntity<List<JobPost>> viewJob(@RequestParam String keyword){
+        if(keyword == null || keyword.trim().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         List<JobPost> job = studentService.searchPost(keyword);
         return new ResponseEntity<>(job, HttpStatus.OK);
     }
+
 }

@@ -17,6 +17,7 @@ public class JobPost {
     private  Long id;
 
     private String orgName;
+    @Email
     private String email;
     private String jobTitle;
     private String jobType;

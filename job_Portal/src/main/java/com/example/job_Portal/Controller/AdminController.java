@@ -3,6 +3,7 @@ package com.example.job_Portal.Controller;
 import com.example.job_Portal.Entity.JobPost;
 import com.example.job_Portal.Entity.User;
 import com.example.job_Portal.Service.AdminService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,24 +39,9 @@ public class AdminController {
     }
 
     @PutMapping("/userStat/email")
-    private ResponseEntity<?> update(@RequestBody Map<String, String> request){
-
-        String email = request.get("email");
-        String stat = request.get("status");
-
-        if(email==null || stat==null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        User user = adminService.findByEmail(email);
-        if(user!=null) {
-            if(stat.equalsIgnoreCase("block")){
-                user.setBlock(Boolean.TRUE);
-            }
-            else if (stat.equalsIgnoreCase("active")) {
-                user.setBlock(Boolean.FALSE);
-            }
-            adminService.update(user);
+    public ResponseEntity<?> update(@RequestBody @Valid Map<String, String> request){
+        boolean check = adminService.updateAccount(request);
+        if(check) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

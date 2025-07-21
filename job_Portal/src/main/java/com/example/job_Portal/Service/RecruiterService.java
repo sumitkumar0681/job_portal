@@ -4,6 +4,7 @@ import com.example.job_Portal.Entity.JobPost;
 import com.example.job_Portal.Repo.JobPostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ public class RecruiterService {
     @Autowired
     private JobPostRepo jobPostRepo;
 
+    @Transactional
     public void saveJob(JobPost jobPost){
         jobPostRepo.save(jobPost);
     }
@@ -22,6 +24,7 @@ public class RecruiterService {
          return jobPostRepo.findByEmail(email);
     }
 
+    @Transactional
     public boolean deletePost(Long id){
         if(jobPostRepo.existsById(id)){
             jobPostRepo.deleteById(id);

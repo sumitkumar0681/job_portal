@@ -3,6 +3,7 @@ package com.example.job_Portal.Controller;
 import com.example.job_Portal.Entity.Application;
 import com.example.job_Portal.Entity.Status;
 import com.example.job_Portal.Service.ApplicationService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +21,9 @@ public class ApplicationController {
     private ApplicationService applicationService;
 
     @PostMapping("/apply")
-    public ResponseEntity<?> apply(@RequestBody Application application){
+    public ResponseEntity<?> applypost(@RequestBody @Valid Application application){
         try {
-            applicationService.apply(application);
-            Long  id = application.getApplicationid();
-            Status status = new Status();
-            status.setId(id);
-            status.setStat("Pending");
-            applicationService.saveStatus(status);
+            applicationService.applypost(application);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
@@ -36,7 +32,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/RecView/{recEmail}")
-    public ResponseEntity<List<Application>> getAll1(@PathVariable String recEmail){
+    public ResponseEntity<List<Application>> getAll1(@PathVariable @Valid String recEmail){
         List<Application> app = applicationService.findByRecEmail(recEmail);
         if(app!=null){
             return new ResponseEntity<>(app, HttpStatus.OK);
@@ -45,7 +41,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/view/{studentEmail}")
-    public ResponseEntity<List<Application>> getAll(@PathVariable String studentEmail){
+    public ResponseEntity<List<Application>> getAll(@PathVariable @Valid String studentEmail){
         List<Application> app = applicationService.findByEmail(studentEmail);
         if(app!=null){
             return new ResponseEntity<>(app, HttpStatus.OK);

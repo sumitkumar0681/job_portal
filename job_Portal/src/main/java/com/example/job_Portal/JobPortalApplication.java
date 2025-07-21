@@ -10,15 +10,16 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-//@EnableTransactionManagement
+@EnableTransactionManagement
 public class JobPortalApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JobPortalApplication.class, args);
 	}
 
-//	@Bean
-//	public PlatformTransactionManager add(EntityManagerFactory factory){
-//		return new JpaTransactionManager(factory);
-//	}
+	@Bean
+	public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
+		return new JpaTransactionManager(factory);
+	}
+
 }
